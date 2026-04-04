@@ -22,7 +22,6 @@
   }
 }
 
-// Posts
 .topic-post .names {
   display: flex;
   flex-wrap: wrap;
@@ -34,20 +33,17 @@
   }
 }
 
-// User Card
 .user-card .names .pronoun-badge,
 .user-card__names .pronoun-badge {
   font-size: 0.82em;
   margin-top: 0.15em;
 }
 
-// User Profile
 .user-profile-names .pronoun-badge,
 .user-profile .primary-textual .pronoun-badge {
   font-size: 0.88em;
 }
 
-// Mobile
 .mobile-view .pronoun-badge {
   font-size: 0.68em;
   padding: 0.08em 0.35em;
