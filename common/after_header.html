@@ -1,0 +1,24 @@
+<script type="text/discourse-plugin" version="0.8">
+  const fieldName = settings.pronoun_user_field_name;
+
+  // Inject pronoun badge after username in various places
+  api.registerValueTransformer("poster-name-right", ({ value, context }) => {
+    const post = context?.post;
+    if (!post) return value;
+
+    const userFields = post.user_fields;
+    if (!userFields) return value;
+
+    const siteUserFields = api.container.lookup("site:main").user_fields || [];
+    const field = siteUserFields.find(f => f.name === fieldName);
+    if (!field) return value;
+
+    const pronoun = userFields[field.id];
+    if (!pronoun) return value;
+
+    const escaped = Handlebars.Utils.escapeExpression(pronoun);
+    const withEmoji = require("discourse/lib/text").emojiUnescape(escaped);
+
+    return value + `<span class="pronoun-badge">${withEmoji}</span>`;
+  });
+</script>
