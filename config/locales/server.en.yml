@@ -1,7 +1,0 @@
-pt_BR:
-  site_settings:
-    pronoun_badge_enabled: "Ativar badge de pronome ao lado do nome de usuário"
-    pronoun_badge_user_field_id: "ID do User Field que contém os pronomes"
-    pronoun_badge_border_color: "Cor da borda do badge de pronome"
-    pronoun_badge_text_color: "Cor do texto do badge de pronome"
-    pronoun_badge_background_color: "Cor de fundo do badge de pronome"
