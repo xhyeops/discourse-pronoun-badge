@@ -1,0 +1,27 @@
+pronoun_user_field_name:
+  type: string
+  default: "Pronomes"
+  description:
+    en: "Name of the User Field containing pronouns (must match exactly)"
+    pt_BR: "Nome do User Field que contém os pronomes (deve corresponder exatamente)"
+
+pronoun_border_color:
+  type: string
+  default: "#e91e63"
+  description:
+    en: "Border color for the pronoun badge"
+    pt_BR: "Cor da borda do badge de pronome"
+
+pronoun_text_color:
+  type: string
+  default: "#ffffff"
+  description:
+    en: "Text color for the pronoun badge"
+    pt_BR: "Cor do texto do badge de pronome"
+
+pronoun_background_color:
+  type: string
+  default: "transparent"
+  description:
+    en: "Background color for the pronoun badge"
+    pt_BR: "Cor de fundo do badge de pronome"
