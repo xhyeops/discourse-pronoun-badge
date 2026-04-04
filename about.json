@@ -1,6 +1,10 @@
 {
   "name": "Pronoun Badge",
-  "about_url": "https://github.com/xhyeops/discourse-pronoun-badge",
-  "license_url": "https://github.com/xhyeops/discourse-pronoun-badge/blob/main/LICENSE",
+  "about_url": null,
+  "license_url": null,
   "component": true,
-  "minimum_discourse_version": "3.0.0"
+  "authors": "xx",
+  "theme_version": "1.0.0",
+  "minimum_discourse_version": null,
+  "maximum_discourse_version": null
+}
