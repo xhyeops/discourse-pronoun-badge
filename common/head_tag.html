@@ -1,91 +1,68 @@
 <script type="text/discourse-plugin" version="0.8">
-  const fieldName = settings.pronoun_user_field_name;
-  const borderColor = settings.pronoun_border_color;
-  const textColor = settings.pronoun_text_color;
-  const bgColor = settings.pronoun_background_color;
+const fieldName = settings.pronoun_user_field_name;
+const borderColor = settings.pronoun_border_color;
+const textColor = settings.pronoun_text_color;
+const bgColor = settings.pronoun_background_color;
 
-  // Set CSS variables
-  document.documentElement.style.setProperty('--pronoun-border-color', borderColor);
-  document.documentElement.style.setProperty('--pronoun-text-color', textColor);
-  document.documentElement.style.setProperty('--pronoun-background-color', bgColor);
+document.documentElement.style.setProperty('--pronoun-border-color', borderColor);
+document.documentElement.style.setProperty('--pronoun-text-color', textColor);
+document.documentElement.style.setProperty('--pronoun-background-color', bgColor);
 
-  // Helper to get pronoun from user fields
-  function getPronounFromUser(user) {
-    if (!user || !user.user_fields) return null;
-    
-    const siteUserFields = api.container.lookup("site:main").user_fields;
-    if (!siteUserFields) return null;
+function getPronounFieldId() {
+  const siteUserFields = api.container.lookup("site:main").user_fields;
+  if (!siteUserFields) return null;
+  const field = siteUserFields.find(f => f.name === fieldName);
+  return field ? field.id : null;
+}
 
-    const field = siteUserFields.find(f => f.name === fieldName);
-    if (!field) return null;
+function createBadgeHTML(pronoun) {
+  if (!pronoun || !pronoun.trim()) return '';
+  const escaped = Handlebars.Utils.escapeExpression(pronoun);
+  const withEmoji = require("discourse/lib/text").emojiUnescape(escaped);
+  return '<span class="pronoun-badge" title="Pronomes">' + withEmoji + '</span>';
+}
 
-    return user.user_fields[field.id];
+api.decorateWidget("poster-name:after", helper => {
+  const post = helper.attrs;
+  if (!post) return;
+
+  const fieldId = getPronounFieldId();
+  if (!fieldId) return;
+
+  const userCustomFields = post.user_custom_fields;
+  if (userCustomFields) {
+    const pronoun = userCustomFields["user_field_" + fieldId];
+    if (pronoun) {
+      return helper.rawHtml(createBadgeHTML(pronoun));
+    }
   }
 
-  // Helper to create badge HTML
-  function createBadgeHTML(pronoun) {
-    if (!pronoun || !pronoun.trim()) return '';
-    
-    const escaped = Handlebars.Utils.escapeExpression(pronoun);
-    const withEmoji = require("discourse/lib/text").emojiUnescape(escaped);
-    
-    return `<span class="pronoun-badge" title="Pronomes">${withEmoji}</span>`;
+  return null;
+});
+
+api.modifyClass("component:user-card-contents", {
+  pluginId: "pronoun-badge",
+
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this._updatePronoun();
+  },
+
+  _updatePronoun() {
+    const user = this.user;
+    if (!user || !user.user_fields) {
+      this.set("pronounBadgeHTML", null);
+      return;
+    }
+
+    const fieldId = getPronounFieldId();
+    if (!fieldId) {
+      this.set("pronounBadgeHTML", null);
+      return;
+    }
+
+    const pronoun = user.user_fields[fieldId];
+    this.set("pronounBadgeHTML", pronoun ? createBadgeHTML(pronoun) : null);
   }
-
-  // Decorator for posts
-  api.decorateWidget("poster-name:after", helper => {
-    const post = helper.attrs;
-    if (!post) return;
-
-    const user = helper.widget.findAncestorModel();
-    if (!user) return;
-
-    // Try to get user fields from the post's user data
-    const postUser = post.user || {};
-    const userFields = postUser.user_fields;
-    
-    if (!userFields) return;
-
-    const siteUserFields = api.container.lookup("site:main").user_fields;
-    if (!siteUserFields) return;
-
-    const field = siteUserFields.find(f => f.name === fieldName);
-    if (!field) return;
-
-    const pronoun = userFields[field.id];
-    if (!pronoun) return;
-
-    return helper.rawHtml(createBadgeHTML(pronoun));
-  });
-
-  // Add pronoun to user card
-  api.modifyClass("component:user-card-contents", {
-    pluginId: "pronoun-badge",
-    
-    didReceiveAttrs() {
-      this._super(...arguments);
-      this._updatePronounBadge();
-    },
-
-    _updatePronounBadge() {
-      const user = this.user;
-      if (!user) return;
-
-      const pronoun = getPronounFromUser(user);
-      this.set("pronounBadge", pronoun ? createBadgeHTML(pronoun) : null);
-    }
-  });
-
-  // Add pronoun to user profile
-  api.modifyClass("controller:user", {
-    pluginId: "pronoun-badge",
-
-    get pronounBadgeHTML() {
-      const user = this.model;
-      if (!user) return null;
-
-      const pronoun = getPronounFromUser(user);
-      return pronoun ? createBadgeHTML(pronoun) : null;
-    }
-  });
+});
 </script>
