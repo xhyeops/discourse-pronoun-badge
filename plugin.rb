@@ -1,11 +1,4 @@
-# frozen_string_literal: true
 
-# name: discourse-pronoun-badge
-# about: Exibe pronomes ao lado do nome do usuário com suporte a emoji e borda estilizada
-# version: 1.0.0
-# authors: xx
-# url: https://github.com/xhyeops/discourse-pronoun-badge
-# required_version: 2.7.0
 
 enabled_site_setting :pronoun_badge_enabled
 
