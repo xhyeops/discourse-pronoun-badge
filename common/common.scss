@@ -1,0 +1,54 @@
+.pronoun-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
+  padding: 0.1em 0.45em;
+  margin-left: 0.35em;
+  font-size: 0.78em;
+  font-weight: 500;
+  line-height: 1.3;
+  border-radius: 10px;
+  border: 1.5px solid var(--pronoun-border-color, #e91e63);
+  color: var(--pronoun-text-color, inherit);
+  background-color: var(--pronoun-background-color, transparent);
+  white-space: nowrap;
+  vertical-align: middle;
+
+  .emoji {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.1em;
+    margin: 0 0.05em;
+  }
+}
+
+// Posts
+.topic-post .names {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2em;
+
+  .pronoun-badge {
+    order: 1;
+  }
+}
+
+// User Card
+.user-card .names .pronoun-badge,
+.user-card__names .pronoun-badge {
+  font-size: 0.82em;
+  margin-top: 0.15em;
+}
+
+// User Profile
+.user-profile-names .pronoun-badge,
+.user-profile .primary-textual .pronoun-badge {
+  font-size: 0.88em;
+}
+
+// Mobile
+.mobile-view .pronoun-badge {
+  font-size: 0.68em;
+  padding: 0.08em 0.35em;
+}
