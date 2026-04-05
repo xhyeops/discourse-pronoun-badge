@@ -1,15 +1,12 @@
-pronoun_user_field_name:
+pronouns_field_name:
   type: string
   default: "Pronomes"
-
-pronoun_border_color:
+  description: "Nome exato do User Field de pronomes (como aparece no admin)"
+pronouns_border_color:
   type: string
-  default: "#e91e63"
-
-pronoun_text_color:
+  default: "#e45dbf"
+  description: "Cor da borda da badge"
+pronouns_text_color:
   type: string
-  default: "#ffffff"
-
-pronoun_background_color:
-  type: string
-  default: "transparent"
+  default: "#e45dbf"
+  description: "Cor do texto da badge"
