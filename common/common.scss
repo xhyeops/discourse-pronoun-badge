@@ -1,50 +1,44 @@
-.pronoun-badge {
+:root {
+  --pronouns-border-color: #{$pronouns_border_color};
+  --pronouns-text-color: #{$pronouns_text_color};
+}
+
+.user-pronouns-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.2em;
+  gap: 0.25em;
   padding: 0.1em 0.45em;
-  margin-left: 0.35em;
-  font-size: 0.78em;
+  margin-left: 0.4em;
+  font-size: 0.75em;
   font-weight: 500;
-  line-height: 1.3;
-  border-radius: 10px;
-  border: 1.5px solid var(--pronoun-border-color, #e91e63);
-  color: var(--pronoun-text-color, inherit);
-  background-color: var(--pronoun-background-color, transparent);
-  white-space: nowrap;
+  border: 1.5px solid var(--pronouns-border-color);
+  border-radius: 4px;
+  color: var(--pronouns-text-color);
+  background: transparent;
   vertical-align: middle;
+  line-height: 1.4;
+  white-space: nowrap;
 
   .emoji {
-    width: 1em;
     height: 1em;
+    width: 1em;
     vertical-align: -0.1em;
-    margin: 0 0.05em;
   }
 }
 
-.topic-post .names {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.2em;
-
-  .pronoun-badge {
-    order: 1;
-  }
+// Posts
+.topic-post .names .user-pronouns-badge {
+  font-size: 0.7em;
 }
 
-.user-card .names .pronoun-badge,
-.user-card__names .pronoun-badge {
-  font-size: 0.82em;
-  margin-top: 0.15em;
+// User card
+.user-card h1 .user-pronouns-badge,
+.user-card h2 .user-pronouns-badge {
+  font-size: 0.65em;
+  vertical-align: middle;
 }
 
-.user-profile-names .pronoun-badge,
-.user-profile .primary-textual .pronoun-badge {
-  font-size: 0.88em;
-}
-
-.mobile-view .pronoun-badge {
-  font-size: 0.68em;
-  padding: 0.08em 0.35em;
+// Perfil
+.user-profile-names .user-pronouns-badge {
+  font-size: 0.75em;
 }
