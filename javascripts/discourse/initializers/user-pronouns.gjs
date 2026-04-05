@@ -77,26 +77,34 @@ export default {
       api.renderInOutlet("user-card-after-username", UserCardPronounsBadge);
       api.renderInOutlet("user-profile-primary-after-username", ProfilePronounsBadge);
       
-      api.addPosterIcons((cfs, attrs) => {
-        const userFields = attrs.user_fields || cfs;
+      // Adiciona pronomes ao lado do nome nos posts
+      api.decorateWidget("poster-name:after", (helper) => {
+        const attrs = helper.attrs;
         
-        if (!userFields || !site?.user_fields) return [];
+        console.log("[v0] decorateWidget poster-name:after - attrs:", attrs);
+        
+        const userFields = attrs.user_fields;
+        console.log("[v0] userFields:", userFields);
+        
+        if (!userFields || !site?.user_fields) {
+          console.log("[v0] userFields ou site.user_fields não disponível");
+          return;
+        }
         
         const field = site.user_fields.find(
           (f) => f.name.toLowerCase() === fieldName.toLowerCase()
         );
         
-        if (!field) return [];
+        console.log("[v0] field encontrado:", field);
+        
+        if (!field) return;
         
         const pronouns = userFields[field.id];
+        console.log("[v0] pronouns:", pronouns);
         
-        if (!pronouns) return [];
+        if (!pronouns) return;
         
-        return [{
-          className: "user-pronouns-badge",
-          text: pronouns,
-          title: pronouns
-        }];
+        return helper.h("span.user-pronouns-badge", emojiUnescape(pronouns));
       });
     });
   }
