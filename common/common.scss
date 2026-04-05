@@ -26,9 +26,16 @@
   }
 }
 
-// Posts
-.topic-post .names .user-pronouns-badge {
+// Poster icons (ao lado do nome nos posts)
+.poster-icon.user-pronouns-badge {
+  width: auto !important;
+  height: auto !important;
   font-size: 0.7em;
+  padding: 0.1em 0.4em;
+  
+  .d-icon {
+    display: none;
+  }
 }
 
 // User card
