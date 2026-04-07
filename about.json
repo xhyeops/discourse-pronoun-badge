@@ -1,7 +1,6 @@
 {
   "name": "Discourse Pronoun Badge",
   "about_url": "",
-  "author": "Kai",
   "license_url": "",
   "component": true,
   "minimum_discourse_version": "3.5.0"
