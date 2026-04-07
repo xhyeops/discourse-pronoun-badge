@@ -1,9 +1,9 @@
 .poster-user-field {
-  margin-left: 0.5em;
+  margin-left: 0.3em;
   font-size: var(--font-down-1);
   color: var(--primary-medium);
+  display: inline;
   
-  // Estilo opcional para destacar com parênteses
   &::before {
     content: "(";
   }
@@ -13,7 +13,6 @@
   }
 }
 
-// Ajustes para mobile se necessário
 .mobile-view {
   .poster-user-field {
     display: inline;
