@@ -3,19 +3,20 @@
   font-size: var(--font-down-1);
   color: var(--primary-medium);
   
-  // Estilo opcional para destacar
+  // Estilo opcional para destacar com parênteses
   &::before {
-    content: "•";
-    margin-right: 0.3em;
-    opacity: 0.5;
+    content: "(";
+  }
+  
+  &::after {
+    content: ")";
   }
 }
 
 // Ajustes para mobile se necessário
 .mobile-view {
   .poster-user-field {
-    display: block;
-    margin-left: 0;
-    margin-top: 0.25em;
+    display: inline;
+    margin-left: 0.25em;
   }
 }
