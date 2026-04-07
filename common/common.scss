@@ -6,12 +6,20 @@
 }
 
 .mobile-view {
+  .topic-meta-data .names {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
   .poster-user-field {
     display: inline;
     margin-left: 0.25em;
+    order: 2; 
   }
-}
-
-span.poster-user-field a::after {
-    postion:fixed;
+  
+  .names .username,
+  .names .first-username {
+    order: 1;
+  }
 }
