@@ -1,13 +1,13 @@
 import Component from "@glimmer/component";
 import { apiInitializer } from "discourse/lib/api";
 
-export default apiInitializer((api) => {
+export default apiInitializer("1.0.0", (api) => {
   api.renderAfterWrapperOutlet(
-    "poster-name:after",
+    "post-meta-data-poster-name",
     class UserFieldDisplay extends Component {
-      // Só renderiza se o user field existir
       static shouldRender(args) {
-        return args.post?.user?.custom_fields?.user_field_1;
+        const value = args.post?.user?.custom_fields?.user_field_1;
+        return value && value.trim() !== "";
       }
 
       get userFieldValue() {
