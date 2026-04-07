@@ -1,0 +1,4 @@
+user_field_id:
+  type: integer
+  default: 1
+  description: "ID do campo de usuário para exibir ao lado do nome (ex: 1 para user_field_1)"
