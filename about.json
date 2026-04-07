@@ -1,7 +1,7 @@
 {
-  "name": "User Pronouns Badge",
+  "name": "User Field After Poster Name",
   "about_url": "",
-  "authors": "xx",
+  "license_url": "",
   "component": true,
-  "min_discourse_version": "3.4.0"
+  "minimum_discourse_version": "3.3.0"
 }
