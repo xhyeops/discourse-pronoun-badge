@@ -5,11 +5,6 @@
   display: inline;
 }
 
-.poster-user-field::before {
-  content: "\2022\0020";
-  opacity: 0.7;
-}
-
 .mobile-view .topic-meta-data .names {
   display: flex;
   flex-wrap: wrap;
