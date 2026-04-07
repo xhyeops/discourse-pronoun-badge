@@ -1,7 +1,8 @@
 {
-  "name": "User Field After Poster Name",
+  "name": "Discourse Pronoun Badge",
   "about_url": "",
   "license_url": "",
   "component": true,
-  "minimum_discourse_version": "3.3.0"
+  "assets": {},
+  "color_schemes": {}
 }
